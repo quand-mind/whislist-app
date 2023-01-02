@@ -3,6 +3,7 @@ import { join } from "path";
 import { readFileSync } from "fs";
 import express from "express";
 import serveStatic from "serve-static";
+mode
 
 import shopify from "./shopify.js";
 import productCreator from "./product-creator.js";
