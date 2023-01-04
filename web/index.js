@@ -45,6 +45,8 @@ app.get("/api/products/getAll", async (_req, res) => {
   const retrieveData = await shopify.api.rest.Product.all({
     session: res.locals.shopify.session,
   });
+
+  // console.log(retrieveData[0].handle)
   res.status(200).send(retrieveData);
 });
 
