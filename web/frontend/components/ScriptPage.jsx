@@ -5,7 +5,7 @@ export function ScriptPage () {
     scriptTagCreate(input: {
       cache: false,
       displayScope: ONLINE_STORE,
-      src: ""
+      src: "/scriptTag.js"
     }) {
       scriptTag {
         id
