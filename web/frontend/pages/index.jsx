@@ -9,13 +9,15 @@ import {
   Heading,
   Banner,
 } from "@shopify/polaris";
-import { TitleBar } from "@shopify/app-bridge-react";
+import { TitleBar, useNavigate } from "@shopify/app-bridge-react";
 
 import { trophyImage } from "../assets";
 
-import { ProductsCard, WhislistProducts } from "../components";
+import { ProductsCard, AddWishlistProducts, WishlistEmails, ScriptPage } from "../components";
 
 export default function HomePage() {
+
+  const navigate = useNavigate();
   return (
     <Page narrowWidth>
       <TitleBar title="Whislist App" primaryAction={null} />
@@ -84,7 +86,9 @@ export default function HomePage() {
         </Layout.Section>
         <Layout.Section>
           <ProductsCard />
-          <WhislistProducts />
+          <AddWishlistProducts />
+          <WishlistEmails />
+          {/* <ScriptPage /> */}
         </Layout.Section>
       </Layout>
     </Page>

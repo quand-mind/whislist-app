@@ -12,8 +12,10 @@
     "deploy": "shopify app deploy"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.3",
     "@shopify/app": "3.30.1",
     "@shopify/cli": "3.30.1",
+    "graphql": "^16.6.0",
     "mongoose": "^6.8.2"
   },
   "author": "andre"
