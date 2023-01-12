@@ -3,6 +3,8 @@ import { join } from "path";
 import { readFileSync } from "fs";
 import express from "express";
 import serveStatic from "serve-static";
+import '@shopify/shopify-api/adapters/node';
+import {shopifyApi, LATEST_API_VERSION} from '@shopify/shopify-api';
 
 import shopify from "./shopify.js";
 import productCreator from "./product-creator.js";
@@ -54,6 +56,7 @@ async function run() {
 }
 
 const PORT = parseInt(process.env.BACKEND_PORT || process.env.PORT, 10); 
+
 
 const STATIC_PATH =
   process.env.NODE_ENV === "production"
