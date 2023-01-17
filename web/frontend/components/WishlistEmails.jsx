@@ -33,7 +33,6 @@ export function WishlistEmails() {
       return response.json();
     };
   }, ['/api/wishlist/getAll', JSON.stringify({method: 'GET'})]);
-  console.log(fetch)
 
   const query = useQuery('/api/wishlist/getAll', fetch, {
     reactQueryOptions: {
@@ -43,7 +42,6 @@ export function WishlistEmails() {
     },
     refetchOnWindowFocus: false,
   });
-  console.log(query)
 
   if(query.data && emails.length < 1) {
     console.log(query.data)

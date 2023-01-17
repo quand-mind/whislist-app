@@ -33,6 +33,7 @@ export function AddWishlistProducts() {
     refetchOnWindowFocus: false,
   });
 
+
   async function addProductsToWhislist() {
 
     if(email) {

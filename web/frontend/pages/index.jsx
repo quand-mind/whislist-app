@@ -10,6 +10,9 @@ import {
   Banner,
 } from "@shopify/polaris";
 import { TitleBar, useNavigate } from "@shopify/app-bridge-react";
+import { useAppQuery, useAuthenticatedFetch } from "../hooks";
+import { useState, useCallback, useMemo } from "react";
+import { useQuery } from "react-query";
 
 import { trophyImage } from "../assets";
 
@@ -18,6 +21,7 @@ import { ProductsCard, AddWishlistProducts, WishlistEmails, ScriptPage } from ".
 export default function HomePage() {
 
   const navigate = useNavigate();
+
   return (
     <Page narrowWidth>
       <TitleBar title="Whislist App" primaryAction={null} />
@@ -88,7 +92,7 @@ export default function HomePage() {
           <ProductsCard />
           <AddWishlistProducts />
           <WishlistEmails />
-          {/* <ScriptPage /> */}
+          <ScriptPage />
         </Layout.Section>
       </Layout>
     </Page>

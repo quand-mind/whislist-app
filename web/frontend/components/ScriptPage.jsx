@@ -1,20 +1,43 @@
 import { useState, useCallback, useMemo, React } from "react";
 import {gql, useMutation } from '@apollo/client'
+import { useAppQuery, useAuthenticatedFetch } from "../hooks";
+import { useQuery } from "react-query";
+import {
+  Button
+} from "@shopify/polaris";
+
 export function ScriptPage () {
-  const CREATE_SCRIPTTAG_QUERY = gql `mutation {
-    scriptTagCreate(input: {
-      cache: false,
-      displayScope: ONLINE_STORE,
-      src: "/scriptTag.js"
-    }) {
-      scriptTag {
-        id
-        src
-        displayScope
-      }
-    }
-  }`
-  const [createSciptTagMutation, {data}] = useMutation(CREATE_SCRIPTTAG_QUERY)
+  const createScript = useCallback (async () => {
+    const authenticatedFetch = useAuthenticatedFetch();
+    const fetch = useMemo(() => {
+      return async () => {
+        const response = await authenticatedFetch('/api/creatScript', {
+          method: 'GET'
+        });
+        return response.json();
+      };
+    }, ['/api/creatScript', JSON.stringify({method: 'GET'})]);
+    
   
-  createSciptTagMutation()
+    const query = useQuery('/api/creatScript', fetch, {
+      reactQueryOptions: {
+        onSuccess: () => {
+          setIsLoading(false);
+        },
+      },
+      refetchOnWindowFocus: false,
+    });
+    console.log(query)
+  })
+  createScript()
+
+  return (
+    <>
+    <Button
+      onClick={createScript}
+    >
+      Start Using Wishlist App
+    </Button>
+    </>
+  );
 }

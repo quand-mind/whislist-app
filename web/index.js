@@ -5,6 +5,7 @@ import express from "express";
 import serveStatic from "serve-static";
 import '@shopify/shopify-api/adapters/node';
 import {shopifyApi, LATEST_API_VERSION} from '@shopify/shopify-api';
+import fetch from "node-fetch";
 
 import shopify from "./shopify.js";
 import productCreator from "./product-creator.js";
@@ -82,6 +83,29 @@ app.use("/api/*", shopify.validateAuthenticatedSession());
 
 app.use(express.json());
 
+app.get("/api/creatScript", async (_req, res) => {
+  
+  const response = fetch("https://whislist-app-store.myshopify.com/admin/api/2022-10/script_tags.json", {
+    body: `{
+      "script_tag":{
+        "event":"onload",
+        "src":"https://cdn.jsdelivr.net/gh/quand-mind/whislist-app/scriptTag.js"
+      }
+    }`,
+    headers: {
+      "Content-Type": "application/json",
+      "X-Shopify-Access-Token": "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"
+    },
+    method: "POST"
+  })
+  const data = await (await response).json()
+
+  console.log(data)
+  
+  res.status(200).send(res.locals.shopify.session);
+  
+})
+
 app.get("/api/products/count", async (_req, res) => {
   const countData = await shopify.api.rest.Product.count({
     session: res.locals.shopify.session,
@@ -107,7 +131,6 @@ app.get("/api/wishlist/getAll", async (_req, res) => {
 
 app.get("/api/wishlist/getProducts/:id", async (_req, res) => {
   const findedEmail = await Email.findById(_req.params.id)
-  console.log(findedEmail)
   if(findedEmail) {
     const products = await Product.find({'email': findedEmail.email})
     const retrieveData = {
