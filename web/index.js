@@ -124,9 +124,19 @@ app.get("/api/products/getAll", async (_req, res) => {
 
 app.get("/api/wishlist/getAll", async (_req, res) => {
   const retrieveData = await Email.find()
+  let responseData = []
+  let products = []
+  let index = 0
+  for (const emailDa of retrieveData) {
+    const productsDa = await Product.find({email: emailDa.email})
+    products.push(productsDa)
+    responseData[index] = {email: emailDa, products: productsDa}
+    index++
+  }
+  
 
-  // console.log(retrieveData[0].handle)
-  res.status(200).send(retrieveData);
+  console.log(products)
+  res.status(200).send(responseData);
 });
 
 app.get("/api/wishlist/getProducts/:id", async (_req, res) => {
@@ -176,6 +186,12 @@ app.post("/api/products/registerProducts", async (_req, res) => {
 
 
   res.status(200).send(_req.body);
+});
+
+app.get("/api/wishlist/getMostWishedProduct", async (_req, res) => {
+  const products = await Product.find()
+  
+  res.status(200).send({product_title: products[0].title});
 });
 
 app.get("/api/products/create", async (_req, res) => {

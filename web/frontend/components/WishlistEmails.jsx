@@ -44,10 +44,15 @@ export function WishlistEmails() {
   });
 
   if(query.data && emails.length < 1) {
-    console.log(query.data)
     setEmails(query.data)
     setIsLoading(false);
   }
+  if(emails.length > 0) {
+    for (const email of emails) {
+      console.log(email.products)
+    }
+  }
+  let index = 0
 
   const navigate = useNavigate();
   
@@ -67,32 +72,55 @@ export function WishlistEmails() {
             items={emails}
             renderItem={
               (item) => {
-                const {_id, email, createdAt} = item;
-                const media = <Avatar customer size="medium" name={email} />;
+                const {email, products} = item;
+                const media = <Avatar customer size="medium" name={email.email} />;
 
                 return (
                   <ResourceItem
-                    id={_id}
+                    id={email._id}
                     url={
                       {
-                      onAction: () => navigate("/wishlist_email/" + _id)
+                      onAction: () => navigate("/wishlist_email/" + email._id)
                       }
                     }
                     media={media}
-                    accessibilityLabel={`View details for ${email}`}
+                    accessibilityLabel={`View details for ${email.email}`}
                     
                   >
                     <TextContainer variant="bodyMd" fontWeight="bold" as="h3" >
                       <div style={{display: "flex", justifyContent:"space-between"}}>
-                        {email}
-                        <Button
-                        onClick={() => navigate(`/wishlist_email/${_id}`)}
-                        >
-                          View Info
-                        </Button>
+                        <span>{email.email}</span>
+
+                        <span>
+                          <span style={{display:"none"}}> {index = 0}</span>
+                          <span>
+                            {products.map( product => {
+                              let response = ""
+                              if (index == 0) {
+                                index++
+                                response = product.title
+                              }
+
+                              return response
+                              
+                            })}
+                          </span>
+                          <span>
+                            <button
+                            style={{
+                              background: "transparent",
+                              border: "0px"
+                            }}
+                            onClick={() => navigate(`/wishlist_email/${email._id}`)}
+                            >
+                              ...
+                            </button>
+                          </span>
+
+                        </span>
+                        
                       </div>
                     </TextContainer>
-                    {/* <div>{location}</div> */}
                   </ResourceItem>
                 );
               }
@@ -107,3 +135,4 @@ export function WishlistEmails() {
 
 
 }
+

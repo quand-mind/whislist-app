@@ -16,17 +16,17 @@ import { useQuery } from "react-query";
 
 import { trophyImage } from "../assets";
 
-import { ProductsCard, AddWishlistProducts, WishlistEmails, ScriptPage } from "../components";
+import { ProductsCard, AddWishlistProducts, WishlistEmails, ScriptPage, MostWishedProduct } from "../components";
 
 export default function HomePage() {
 
   const navigate = useNavigate();
 
   return (
-    <Page narrowWidth>
+    <Page fullWidth>
       <TitleBar title="Whislist App" primaryAction={null} />
       <Layout>
-        <Layout.Section>
+        {/* <Layout.Section>
           <Card sectioned>
             <Banner status="warning" title="Warning" onDismiss={() => {}}>
               <p>Whislist App is on dev.</p>
@@ -87,12 +87,15 @@ export default function HomePage() {
               </Stack.Item>
             </Stack>
           </Card>
-        </Layout.Section>
+        </Layout.Section> */}
         <Layout.Section>
           <ProductsCard />
           <AddWishlistProducts />
           <WishlistEmails />
           <ScriptPage />
+        </Layout.Section>
+        <Layout.Section secondary>
+          <MostWishedProduct></MostWishedProduct>
         </Layout.Section>
       </Layout>
     </Page>
