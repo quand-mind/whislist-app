@@ -26,6 +26,9 @@ const ProductSchema = new Schema ({
     type: String,
     required: true
   },
+  img_url: {
+    type: String
+  },
   email: {
     type: String,
     required: true
@@ -99,8 +102,6 @@ app.get("/api/creatScript", async (_req, res) => {
     method: "POST"
   })
   const data = await (await response).json()
-
-  console.log(data)
   
   res.status(200).send(res.locals.shopify.session);
   
@@ -134,8 +135,6 @@ app.get("/api/wishlist/getAll", async (_req, res) => {
     index++
   }
   
-
-  console.log(products)
   res.status(200).send(responseData);
 });
 
@@ -155,6 +154,7 @@ app.get("/api/wishlist/getProducts/:id", async (_req, res) => {
 });
 
 app.post("/api/products/registerProducts", async (_req, res) => {
+  console.log('que pasa?')
   const products = _req.body.products
   const emailData = _req.body.email
   const findedEmail = await Email.findOne({'email': _req.body.email})
@@ -167,10 +167,10 @@ app.post("/api/products/registerProducts", async (_req, res) => {
     await email.save();
   }
 
-  // console.log(products)
   for (const productData of products) {
 
     const findedProduct = await Product.findOne({'id_product':productData.id,'email': _req.body.email})
+    
     if(findedProduct) {
 
     } else {
@@ -178,7 +178,8 @@ app.post("/api/products/registerProducts", async (_req, res) => {
         handle: productData.handle,
         title: productData.title,
         id_product: productData.id,
-        email: emailData
+        email: emailData,
+        img_url: productData.image.src
       });
       await product.save();
     }
@@ -190,8 +191,19 @@ app.post("/api/products/registerProducts", async (_req, res) => {
 
 app.get("/api/wishlist/getMostWishedProduct", async (_req, res) => {
   const products = await Product.find()
+
+  let count = 0
+  let productWished = {}
+
+  for (const searchProduct of products) {
+    const productsWithSame = products.filter(product => product.handle == searchProduct.handle)
+    if (productsWithSame.length >= count) {
+      count = productsWithSame.length
+      productWished = searchProduct
+    }
+  }
   
-  res.status(200).send({product_title: products[0].title});
+  res.status(200).send({product: productWished, count: count});
 });
 
 app.get("/api/products/create", async (_req, res) => {
