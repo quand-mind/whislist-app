@@ -111,7 +111,8 @@ export function WishlistEmails() {
                               background: "transparent",
                               border: "0px",
                               color: "blue",
-                              textDecoration:"underline"
+                              textDecoration:"underline",
+                              cursor:"pointer"
                             }}
                             onClick={() => navigate(`/wishlist_email/${email._id}`)}
                             >
