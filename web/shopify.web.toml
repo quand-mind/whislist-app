@@ -1,4 +1,7 @@
 type="backend"
 
+auth_callback_path=["/auth/callback", "auth/shopify/callback", "api/auth/callback"]
+
 [commands]
 dev = "npm run dev"
+build = "npm run build"

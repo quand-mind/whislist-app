@@ -1,3 +1,6 @@
 # This file stores configurations for your Shopify app.
 
+name = "My new app"
 scopes = "write_products"
+web_directories = ["web/*"]
+
