@@ -6,7 +6,6 @@ import serveStatic from "serve-static";
 import '@shopify/shopify-api/adapters/node';
 import {shopifyApi, LATEST_API_VERSION} from '@shopify/shopify-api';
 import fetch from "node-fetch";
-import { useAppQuery, useAuthenticatedFetch } from "../web/frontend/hooks";
 
 import shopify from "./shopify.js";
 import productCreator from "./product-creator.js";
