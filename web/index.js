@@ -6,6 +6,7 @@ import serveStatic from "serve-static";
 import '@shopify/shopify-api/adapters/node';
 import {shopifyApi, LATEST_API_VERSION} from '@shopify/shopify-api';
 import fetch from "node-fetch";
+import { useAppQuery, useAuthenticatedFetch } from "../web/frontend/hooks";
 
 import shopify from "./shopify.js";
 import productCreator from "./product-creator.js";
@@ -85,6 +86,11 @@ app.post(
 app.use("/api/*", shopify.validateAuthenticatedSession());
 
 app.use(express.json());
+
+app.use("/api_v2/registerProducts", async (req, res) => {
+  console.log('Products')
+  res.status(200).send({'msg': 'Products Created'});
+})
 
 app.get("/api/creatScript", async (_req, res) => {
   
