@@ -113,7 +113,7 @@ export function WishlistEmails() {
                             }}
                             onClick={() => navigate(`/wishlist_email/${email._id}`)}
                             >
-                              ...
+                              And other {products.length} products +
                             </button>
                           </span>
 
