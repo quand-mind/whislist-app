@@ -112,11 +112,12 @@ export function WishlistEmails() {
                               border: "0px",
                               color: "blue",
                               textDecoration:"underline",
-                              cursor:"pointer"
+                              cursor:"pointer",
+
                             }}
                             onClick={() => navigate(`/wishlist_email/${email._id}`)}
                             >
-                              And other {products.length - 1} products +
+                              +{products.length - 1} products more...
                             </button>
                           </span>
 
