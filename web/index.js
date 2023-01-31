@@ -103,7 +103,7 @@ app.get("/api/creatScript", async (_req, res) => {
   const scriptTagListData = await (await scriptTagListResponse).json()
   console.log(scriptTagListData)
 
-  if(scriptTagListdata.script_tags.length > 0) {
+  if(scriptTagListData.script_tags.length > 0) {
     const createScriptTagResponse = fetch("https://whislist-app-store.myshopify.com/admin/api/2022-10/script_tags.json", {
       body: `{
         "script_tag":{
