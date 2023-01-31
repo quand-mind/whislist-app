@@ -101,7 +101,7 @@ app.get("/api/creatScript", async (_req, res) => {
     method: "GET"
   })
   const scriptTagListData = await (await scriptTagListResponse).json()
-  
+
   if(scriptTagListData.script_tags.length > 0) {
     
     for (const script_tag of scriptTagListData.script_tags) {
@@ -120,7 +120,7 @@ app.get("/api/creatScript", async (_req, res) => {
       body: `{
         "script_tag":{
           "event":"onload",
-          "src":"https://cdn.jsdelivr.net/gh/quand-mind/whislist-app/scriptTag.js"
+          "src":"https://cdn.jsdelivr.net/gh/quand-mind/whislist-app/scriptTag.js@latest"
         }
       }`,
       headers: {
