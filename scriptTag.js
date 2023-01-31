@@ -2,6 +2,8 @@ const header = document.getElementsByClassName('header__icons')[0]
 const body = document.getElementsByTagName('body')[0]
 
 
+
+
 // Wishlist Modal
 
 
@@ -199,7 +201,14 @@ wh_modal.addEventListener('click', function(e){
 })
 
 const wh_open_modal = document.getElementById('wh-open-modal')
-wh_open_modal.addEventListener('click', function(e){
+wh_open_modal.addEventListener('click', async function(e){
+  const response = await fetch('https://urchin-app-rpbee.ondigitalocean.app/api/wishlist/getMostWishedProduct', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  })
+  console.log(response.json())
   console.log('sold')
   wh_modal.classList.add('wh-modal-active')
   body.classList.add('scroll-none')

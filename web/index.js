@@ -86,7 +86,7 @@ app.use("/api/*", shopify.validateAuthenticatedSession());
 
 app.use(express.json());
 
-app.use("/api_v2/registerProducts", async (req, res) => {
+app.post("/api_v2/registerProducts", async (req, res) => {
   console.log('Products')
   res.status(200).send({'msg': 'Products Created'});
 })
