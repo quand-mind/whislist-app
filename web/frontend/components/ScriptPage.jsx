@@ -29,12 +29,12 @@ export function ScriptPage () {
     });
     console.log(query)
   })
-  createScript()
+  // createScript()
 
   return (
     <>
     <Button
-      onClick={createScript}
+      onClick={useEffect(createScript)}
     >
       Start Using Wishlist App
     </Button>
