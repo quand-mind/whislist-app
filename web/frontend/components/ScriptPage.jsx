@@ -29,7 +29,7 @@ export function ScriptPage () {
     });
     console.log(query)
   })
-  // createScript()
+  createScript()
 
   return (
     <>
