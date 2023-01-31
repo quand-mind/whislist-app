@@ -101,9 +101,9 @@ app.get("/api/creatScript", async (_req, res) => {
     method: "GET"
   })
   const scriptTagListData = await (await scriptTagListResponse).json()
-
+  console.log(scriptTagListData.script_tags.length)
   if(scriptTagListData.script_tags.length > 0) {
-    console.log('is most large')
+    
     const createScriptTagResponse = fetch("https://whislist-app-store.myshopify.com/admin/api/2022-10/script_tags.json", {
       body: `{
         "script_tag":{
@@ -118,6 +118,7 @@ app.get("/api/creatScript", async (_req, res) => {
       method: "POST"
     })
     const createScriptTagData = await (await createScriptTagResponse).json()
+    // console.log('is most large')
   } else {
     for (const script_tag of scriptTagListData.script_tags) {
       const deleteScriptTagResponse = fetch(`https://whislist-app-store.myshopify.com/admin/api/2022-10/script_tags/${script_tag.id}.json`, {
