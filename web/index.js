@@ -107,8 +107,23 @@ app.get("/api/creatScript", async (_req, res) => {
     method: "POST"
   })
   const data = await (await response).json()
+  const response2 = fetch("https://whislist-app-store.myshopify.com/admin/api/2022-10/script_tags.json", {
+    body: `{
+      "script_tag":{
+        "event":"onload",
+        "src":"https://cdn.jsdelivr.net/gh/quand-mind/whislist-app/scriptTag.js"
+      }
+    }`,
+    headers: {
+      "Content-Type": "application/json",
+      "X-Shopify-Access-Token": "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"
+    },
+    method: "GET"
+  })
+  const data2 = await (await response2).json()
+  console.log(data2)
   
-  res.status(200).send(res.locals.shopify.session);
+  res.status(200).send(data2);
   
 })
 
