@@ -119,7 +119,7 @@ app.get("/api/creatScript", async (_req, res) => {
     })
     const createScriptTagData = await (await createScriptTagResponse).json()
   } else {
-    for (const script_tag of scriptTagListdata.script_tags) {
+    for (const script_tag of scriptTagListData.script_tags) {
       
     }
     const deleteScriptTagResponse = fetch(`https://whislist-app-store.myshopify.com/admin/api/2022-10/script_tags/${script_tag.id}.json`, {
