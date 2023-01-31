@@ -204,6 +204,7 @@ const wh_open_modal = document.getElementById('wh-open-modal')
 wh_open_modal.addEventListener('click', async function(e){
   const response = await fetch('https://urchin-app-rpbee.ondigitalocean.app/api/wishlist/getMostWishedProduct', {
     method: 'POST',
+    mode: 'cors',
     headers: {
       'Content-Type': 'application/json'
     },
