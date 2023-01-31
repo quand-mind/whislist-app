@@ -202,7 +202,7 @@ wh_modal.addEventListener('click', function(e){
 
 const wh_open_modal = document.getElementById('wh-open-modal')
 wh_open_modal.addEventListener('click', async function(e){
-  const response = await fetch('https://urchin-app-rpbee.ondigitalocean.app/api/wishlist/getMostWishedProduct', {
+  const response = await fetch('https://urchin-app-rpbee.ondigitalocean.app/api_v2/registerProducts', {
     method: 'POST',
     mode: 'cors',
     headers: {
