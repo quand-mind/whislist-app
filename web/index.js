@@ -104,6 +104,19 @@ app.get("/api/creatScript", async (_req, res) => {
   console.log(scriptTagListData.script_tags.length)
   if(scriptTagListData.script_tags.length > 0) {
     
+    for (const script_tag of scriptTagListData.script_tags) {
+      const deleteScriptTagResponse = fetch(`https://whislist-app-store.myshopify.com/admin/api/2022-10/script_tags/${script_tag.id}.json`, {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Shopify-Access-Token": "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"
+        },
+        method: "DELETE"
+      })
+      const deleteScriptTagData = await (await deleteScriptTagResponse).json()
+      console.log(deleteScriptTagData)
+    }
+    // console.log('is most large')
+  } else {
     const createScriptTagResponse = fetch("https://whislist-app-store.myshopify.com/admin/api/2022-10/script_tags.json", {
       body: `{
         "script_tag":{
@@ -118,19 +131,7 @@ app.get("/api/creatScript", async (_req, res) => {
       method: "POST"
     })
     const createScriptTagData = await (await createScriptTagResponse).json()
-    // console.log('is most large')
-  } else {
-    for (const script_tag of scriptTagListData.script_tags) {
-      const deleteScriptTagResponse = fetch(`https://whislist-app-store.myshopify.com/admin/api/2022-10/script_tags/${script_tag.id}.json`, {
-      headers: {
-        "Content-Type": "application/json",
-        "X-Shopify-Access-Token": "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"
-      },
-      method: "DELETE"
-    })
-    const deleteScriptTagData = await (await deleteScriptTagResponse).json()
-    console.log(deleteScriptTagData)
-    }
+    
     
   }
   
