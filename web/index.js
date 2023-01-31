@@ -119,9 +119,7 @@ app.get("/api/creatScript", async (_req, res) => {
     const createScriptTagData = await (await createScriptTagResponse).json()
   } else {
     for (const script_tag of scriptTagListData.script_tags) {
-      
-    }
-    const deleteScriptTagResponse = fetch(`https://whislist-app-store.myshopify.com/admin/api/2022-10/script_tags/${script_tag.id}.json`, {
+      const deleteScriptTagResponse = fetch(`https://whislist-app-store.myshopify.com/admin/api/2022-10/script_tags/${script_tag.id}.json`, {
       headers: {
         "Content-Type": "application/json",
         "X-Shopify-Access-Token": "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"
@@ -130,6 +128,8 @@ app.get("/api/creatScript", async (_req, res) => {
     })
     const deleteScriptTagData = await (await deleteScriptTagResponse).json()
     console.log(deleteScriptTagData)
+    }
+    
   }
   
   res.status(200).send(scriptTagListData);
