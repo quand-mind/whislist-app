@@ -116,22 +116,22 @@ app.get("/api/creatScript", async (_req, res) => {
       console.log(deleteScriptTagData)
     }
   }
-    const createScriptTagResponse = fetch("https://whislist-app-store.myshopify.com/admin/api/2022-10/script_tags.json", {
-      body: `{
-        "script_tag":{
-          "event":"onload",
-          "src":"https://cdn.jsdelivr.net/gh/quand-mind/whislist-app/scriptTag2.js"
-        }
-      }`,
-      headers: {
-        "Content-Type": "application/json",
-        "X-Shopify-Access-Token": "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"
-      },
-      method: "POST"
-    })
-    const createScriptTagData = await (await createScriptTagResponse).json()
+  // const createScriptTagResponse = fetch("https://whislist-app-store.myshopify.com/admin/api/2022-10/script_tags.json", {
+  //   body: `{
+  //     "script_tag":{
+  //       "event":"onload",
+  //       "src":"https://cdn.jsdelivr.net/gh/quand-mind/whislist-app/scriptTag2.js"
+  //     }
+  //   }`,
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //     "X-Shopify-Access-Token": "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"
+  //   },
+  //   method: "POST"
+  // })
+  // const createScriptTagData = await (await createScriptTagResponse).json()
   
-  res.status(200).send(createScriptTagData);
+  res.status(200).send(scriptTagListResponse);
   
 })
 
