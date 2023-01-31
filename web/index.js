@@ -93,31 +93,46 @@ app.post("/api_v2/registerProducts", async (req, res) => {
 
 app.get("/api/creatScript", async (_req, res) => {
   
-  // const response = fetch("https://whislist-app-store.myshopify.com/admin/api/2022-10/script_tags.json", {
-  //   body: `{
-  //     "script_tag":{
-  //       "event":"onload",
-  //       "src":"https://cdn.jsdelivr.net/gh/quand-mind/whislist-app/scriptTag.js"
-  //     }
-  //   }`,
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     "X-Shopify-Access-Token": "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"
-  //   },
-  //   method: "POST"
-  // })
-  // const data = await (await response).json()
-  const response = fetch("https://whislist-app-store.myshopify.com/admin/api/2022-10/script_tags.json", {
+  const scriptTagListResponse = fetch("https://whislist-app-store.myshopify.com/admin/api/2022-10/script_tags.json", {
     headers: {
       "Content-Type": "application/json",
       "X-Shopify-Access-Token": "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"
     },
     method: "GET"
   })
-  const data = await (await response).json()
-  console.log(data)
+  const scriptTagListData = await (await scriptTagListResponse).json()
+  console.log(scriptTagListData)
+
+  if(scriptTagListdata.script_tags.length > 0) {
+    const createScriptTagResponse = fetch("https://whislist-app-store.myshopify.com/admin/api/2022-10/script_tags.json", {
+      body: `{
+        "script_tag":{
+          "event":"onload",
+          "src":"https://cdn.jsdelivr.net/gh/quand-mind/whislist-app/scriptTag.js"
+        }
+      }`,
+      headers: {
+        "Content-Type": "application/json",
+        "X-Shopify-Access-Token": "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"
+      },
+      method: "POST"
+    })
+    const createScriptTagData = await (await createScriptTagResponse).json()
+  } else {
+    for (const script_tag of scriptTagListdata.script_tags) {
+      
+    }
+    const deleteScriptTagResponse = fetch(`https://whislist-app-store.myshopify.com/admin/api/2022-10/script_tags/${script_tag.id}.json`, {
+      headers: {
+        "Content-Type": "application/json",
+        "X-Shopify-Access-Token": "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"
+      },
+      method: "DELETE"
+    })
+    const deleteScriptTagData = await (await deleteScriptTagResponse).json()
+  }
   
-  res.status(200).send(data);
+  res.status(200).send(scriptTagListData);
   
 })
 
