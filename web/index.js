@@ -101,8 +101,7 @@ app.get("/api/creatScript", async (_req, res) => {
     method: "GET"
   })
   const scriptTagListData = await (await scriptTagListResponse).json()
-  console.log(scriptTagListData)
-
+  console.log(scriptTagListData.script_tags)
   if(scriptTagListData.script_tags.length > 0) {
     const createScriptTagResponse = fetch("https://whislist-app-store.myshopify.com/admin/api/2022-10/script_tags.json", {
       body: `{
@@ -130,6 +129,7 @@ app.get("/api/creatScript", async (_req, res) => {
       method: "DELETE"
     })
     const deleteScriptTagData = await (await deleteScriptTagResponse).json()
+    console.log(deleteScriptTagData)
   }
   
   res.status(200).send(scriptTagListData);
