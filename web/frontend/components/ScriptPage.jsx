@@ -34,7 +34,7 @@ export function ScriptPage () {
   return (
     <>
     <Button
-      onClick={useEffect(createScript)}
+      onClick={createScript}
     >
       Start Using Wishlist App
     </Button>
