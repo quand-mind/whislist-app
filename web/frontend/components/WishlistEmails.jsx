@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import { useAppQuery, useAuthenticatedFetch } from "../hooks";
 import { useQuery } from "react-query";
 import { useNavigate } from "@shopify/app-bridge-react";
