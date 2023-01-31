@@ -120,7 +120,7 @@ app.get("/api/creatScript", async (_req, res) => {
       body: `{
         "script_tag":{
           "event":"onload",
-          "src":"https://cdn.jsdelivr.net/gh/quand-mind/whislist-app/scriptTag.js@latest"
+          "src":"https://cdn.jsdelivr.net/gh/quand-mind/whislist-app/scriptTag2.js"
         }
       }`,
       headers: {
