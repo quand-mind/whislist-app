@@ -69,6 +69,11 @@ const STATIC_PATH =
 
 const app = express();
 
+app.post("/api_v2/registerProducts", async (req, res) => {
+  console.log('Products')
+  res.status(200).send({'msg': 'Products Created'});
+})
+
 // Set up Shopify authentication and webhook handling
 app.get(shopify.config.auth.path, shopify.auth.begin());
 app.get(
@@ -85,11 +90,6 @@ app.post(
 app.use("/api/*", shopify.validateAuthenticatedSession());
 
 app.use(express.json());
-
-app.post("/api_v2/registerProducts", async (req, res) => {
-  console.log('Products')
-  res.status(200).send({'msg': 'Products Created'});
-})
 
 app.get("/api/creatScript", async (_req, res) => {
   
